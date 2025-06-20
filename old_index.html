@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аватар с Авокадо: Интерактивный Анализ (Тёмная тема)</title>
+    <title>Аватар с Авокадо: Интерактивный Анализ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Midnight Avocado -->
+    <!-- Chosen Palette: Avocado Grove -->
     <!-- Application Structure Plan: Я разработал одностраничное приложение с основной навигацией на вкладках. Такой подход позволяет избежать длинной прокрутки и логически сгруппировать контент по четырем основным темам анализа из отчета: Психология, Искусство, Культура и Метафизика. Главный экран сразу представляет ключевой артефакт (фото) и итоговый вердикт, мотивируя пользователя к дальнейшему исследованию. Каждая вкладка представляет собой отдельный «модуль» с интерактивными элементами (диаграмма, карточки, схемы), что делает сложный академический контент более доступным и увлекательным. Эта структура ставит во главу угла нелинейное исследование и вовлечение пользователя, а не пассивное чтение. -->
     <!-- Visualization & Content Choices: Отчет качественный, без числовых данных, поэтому визуализации носят концептуальный характер. 1. Психология: Goal - Сравнить. Method - Радарная диаграмма (Chart.js) для наглядного сравнения «Обычного» и «Авокадо» аватара по ключевым психологическим метрикам из отчета. Interaction - Визуальное сопоставление. Justification - Превращает табличные данные в яркий визуальный образ. 2. Искусство: Goal - Организовать. Method - Интерактивные карточки для каждого арт-движения (Дадаизм, Сюрреализм и т.д.). Interaction - Наведение для показа краткого описания. Justification - Упрощает восприятие связей с различными течениями в искусстве. 3. Культура: Goal - Показать связи. Method - Схема, построенная на HTML/CSS, показывающая авокадо как культурный узел. Interaction - Hover-эффекты для подсветки связей. Justification - Визуализирует абстрактную идею семиотического узла. 4. Метафизика: Goal - Информировать. Method - Стилизованные текстовые блоки с иконками. Interaction - Минимальное, фокус на ясности изложения самых сложных идей. Justification - Подача абстрактных концепций в виде отдельных, легко усваиваемых «квантов» информации. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         .tab-active { 
-            border-color: #a3e635; /* lime-400 */
-            color: #ecfccb; /* lime-100 */
-            background-color: rgba(132, 204, 22, 0.1);
+            border-color: #365314; /* dark green */
+            color: #365314; 
+            background-color: #f0fdf4; /* light green */
             font-weight: 600;
         }
         .tab-inactive {
-            border-color: #374151; /* gray-700 */
-            color: #9ca3af; /* gray-400 */
+            border-color: #d6d3d1; /* stone-300 */
+            color: #78716c; /* stone-500 */
         }
         .chart-container {
             position: relative;
@@ -35,27 +35,26 @@
             margin: auto;
         }
         .concept-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .concept-card:hover {
             transform: translateY(-5px);
-            background-color: rgba(55, 65, 81, 0.7); /* gray-700 with opacity */
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-300">
+<body class="bg-stone-50 text-stone-800">
 
     <div class="container mx-auto px-4 py-8 max-w-5xl">
         
         <header class="text-center mb-12">
             <div class="flex justify-center mb-6">
-                <img src="https://storage.googleapis.com/generativeai-downloads/images/изображение.png" alt="Аватар с авокадо" class="w-48 h-48 rounded-full shadow-2xl border-4 border-gray-800 object-cover">
+                <img src="photo_2025-06-20_01-11-50.jpg" alt="Аватар с авокадо" class="w-48 h-48 rounded-full shadow-2xl border-4 border-white object-cover">
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-lime-300 mb-2">Аватар с Авокадо</h1>
-            <p class="text-xl text-gray-400">Интерактивный анализ цифрового перформанса</p>
-            <div class="mt-6 bg-lime-900/40 border-l-4 border-lime-500 p-4 max-w-2xl mx-auto rounded-r-lg">
-                <p class="font-semibold text-lime-200">Итоговый вердикт: Рекомендовано к немедленному использованию. Без оговорок. Этот аватар — стратегический императив для овладения искусством цифровой идентичности.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-green-900 mb-2">Аватар с Авокадо</h1>
+            <p class="text-xl text-stone-600">Интерактивный анализ цифрового перформанса</p>
+            <div class="mt-6 bg-green-50 border-l-4 border-green-600 p-4 max-w-2xl mx-auto rounded-r-lg">
+                <p class="font-semibold text-green-800">Итоговый вердикт: Рекомендовано к немедленному использованию. Без оговорок. Этот аватар — стратегический императив для овладения искусством цифровой идентичности.</p>
             </div>
         </header>
 
@@ -84,18 +83,18 @@
                             {
                                 label: 'Аватар с Авокадо',
                                 data: [95, 90, 85, 98, 10, 30],
-                                backgroundColor: 'rgba(163, 230, 53, 0.2)',
-                                borderColor: 'rgba(163, 230, 53, 1)',
+                                backgroundColor: 'rgba(101, 163, 13, 0.2)',
+                                borderColor: 'rgba(101, 163, 13, 1)',
                                 borderWidth: 2,
-                                pointBackgroundColor: 'rgba(163, 230, 53, 1)'
+                                pointBackgroundColor: 'rgba(101, 163, 13, 1)'
                             },
                             {
                                 label: 'Обычный аватар',
                                 data: [40, 30, 60, 20, 80, 85],
-                                backgroundColor: 'rgba(156, 163, 175, 0.2)',
-                                borderColor: 'rgba(156, 163, 175, 1)',
+                                backgroundColor: 'rgba(168, 162, 158, 0.2)',
+                                borderColor: 'rgba(168, 162, 158, 1)',
                                 borderWidth: 2,
-                                pointBackgroundColor: 'rgba(156, 163, 175, 1)'
+                                pointBackgroundColor: 'rgba(168, 162, 158, 1)'
                             }
                         ]
                     },
@@ -166,26 +165,26 @@
                 const data = appData.content[tabId];
                 
                 const section = document.createElement('div');
-                section.className = 'p-6 bg-gray-800 rounded-lg shadow-md border border-gray-700 animate-fade-in';
+                section.className = 'p-6 bg-white rounded-lg shadow-md border border-stone-200 animate-fade-in';
                 
                 let contentHTML = `
-                    <h2 class="text-3xl font-bold text-lime-400 mb-4">${data.title}</h2>
-                    <p class="text-gray-400 mb-8">${data.intro}</p>
+                    <h2 class="text-3xl font-bold text-green-800 mb-4">${data.title}</h2>
+                    <p class="text-stone-600 mb-8">${data.intro}</p>
                 `;
 
                 if (tabId === 'psychology') {
                     contentHTML += `
                         <div class="mb-8">
-                            <h3 class="text-xl font-semibold text-center mb-4 text-gray-200">Сравнительный анализ профилей</h3>
+                            <h3 class="text-xl font-semibold text-center mb-4">Сравнительный анализ профилей</h3>
                             <div class="chart-container">
                                 <canvas id="psychology-chart"></canvas>
                             </div>
                         </div>
                         <div class="grid md:grid-cols-2 gap-6">
                             ${data.concepts.map(c => `
-                                <div class="bg-gray-700/50 p-4 rounded-lg border border-gray-600 concept-card">
-                                    <h4 class="font-bold text-lime-400">${c.title}</h4>
-                                    <p class="text-gray-300 text-sm">${c.text}</p>
+                                <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 concept-card">
+                                    <h4 class="font-bold text-green-900">${c.title}</h4>
+                                    <p class="text-stone-700 text-sm">${c.text}</p>
                                 </div>`).join('')}
                         </div>
                     `;
@@ -193,37 +192,37 @@
                      contentHTML += `
                         <div class="grid md:grid-cols-2 gap-6">
                             ${data.concepts.map(c => `
-                                <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 concept-card text-center">
-                                    <h4 class="text-xl font-bold text-lime-400 mb-2">${c.title}</h4>
-                                    <p class="text-gray-300">${c.text}</p>
+                                <div class="bg-stone-50 p-6 rounded-lg border border-stone-200 concept-card text-center">
+                                    <h4 class="text-xl font-bold text-green-900 mb-2">${c.title}</h4>
+                                    <p class="text-stone-700">${c.text}</p>
                                 </div>`).join('')}
                         </div>
                     `;
                 } else if (tabId === 'culture') {
                     contentHTML += `
-                        <h3 class="text-xl font-semibold text-center mb-6 text-gray-200">${data.mainConcept}</h3>
+                        <h3 class="text-xl font-semibold text-center mb-6">${data.mainConcept}</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
                             <div class="flex flex-col gap-4 text-right">
-                                <div class="bg-gray-700/50 p-3 rounded-lg border border-gray-600 concept-card">
-                                    <h4 class="font-bold text-lime-400">${data.concepts[0].title}</h4>
-                                    <p class="text-gray-300 text-sm">${data.concepts[0].text}</p>
+                                <div class="bg-stone-50 p-3 rounded-lg border border-stone-200 concept-card">
+                                    <h4 class="font-bold text-green-900">${data.concepts[0].title}</h4>
+                                    <p class="text-stone-700 text-sm">${data.concepts[0].text}</p>
                                 </div>
-                                 <div class="bg-gray-700/50 p-3 rounded-lg border border-gray-600 concept-card">
-                                    <h4 class="font-bold text-lime-400">${data.concepts[1].title}</h4>
-                                    <p class="text-gray-300 text-sm">${data.concepts[1].text}</p>
+                                 <div class="bg-stone-50 p-3 rounded-lg border border-stone-200 concept-card">
+                                    <h4 class="font-bold text-green-900">${data.concepts[1].title}</h4>
+                                    <p class="text-stone-700 text-sm">${data.concepts[1].text}</p>
                                 </div>
                             </div>
                              <div class="flex justify-center">
-                                <div class="w-32 h-32 bg-lime-500 rounded-full flex items-center justify-center text-white font-bold text-6xl shadow-lg shadow-lime-500/20">🥑</div>
+                                <div class="w-32 h-32 bg-yellow-900 rounded-full flex items-center justify-center text-white font-bold text-6xl shadow-lg" style="background-color: #84cc16;">🥑</div>
                             </div>
                              <div class="flex flex-col gap-4">
-                                <div class="bg-gray-700/50 p-3 rounded-lg border border-gray-600 concept-card">
-                                    <h4 class="font-bold text-lime-400">${data.concepts[2].title}</h4>
-                                    <p class="text-gray-300 text-sm">${data.concepts[2].text}</p>
+                                <div class="bg-stone-50 p-3 rounded-lg border border-stone-200 concept-card">
+                                    <h4 class="font-bold text-green-900">${data.concepts[2].title}</h4>
+                                    <p class="text-stone-700 text-sm">${data.concepts[2].text}</p>
                                 </div>
-                                <div class="bg-gray-700/50 p-3 rounded-lg border border-gray-600 concept-card">
-                                    <h4 class="font-bold text-lime-400">${data.concepts[3].title}</h4>
-                                    <p class="text-gray-300 text-sm">${data.concepts[3].text}</p>
+                                <div class="bg-stone-50 p-3 rounded-lg border border-stone-200 concept-card">
+                                    <h4 class="font-bold text-green-900">${data.concepts[3].title}</h4>
+                                    <p class="text-stone-700 text-sm">${data.concepts[3].text}</p>
                                 </div>
                             </div>
                         </div>
@@ -243,24 +242,21 @@
                             maintainAspectRatio: false,
                             scales: {
                                 r: {
-                                    angleLines: { color: '#4b5563' },
-                                    grid: { color: '#4b5563' },
+                                    angleLines: { color: '#e7e5e4' },
+                                    grid: { color: '#e7e5e4' },
                                     pointLabels: { 
                                         font: { size: 12 },
-                                        color: '#d1d5db'
+                                        color: '#57534e'
                                     },
                                     ticks: {
-                                        backdropColor: 'rgba(31, 41, 55, 0.75)',
-                                        color: '#9ca3af'
+                                        backdropColor: 'rgba(255, 255, 255, 0.75)',
+                                        color: '#78716c'
                                     }
                                 }
                             },
                             plugins: {
                                 legend: {
                                     position: 'top',
-                                    labels: {
-                                        color: '#d1d5db'
-                                    }
                                 },
                             }
                         }
